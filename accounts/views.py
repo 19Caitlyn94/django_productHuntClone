@@ -9,12 +9,12 @@ def signup(request):
         if request.POST['password'] == request.POST['password_confirm']:
             try:
                 user = User.objects.get(username=request.POST['username'])
-                return render(request, 'accounts/signup.html', {'error': 'Username already exists'})
+                return render(request, 'accounts/signup.html', {'username_error': 'Username already exists'})
             except User.DoesNotExist:
-                user = User.objects.create_user(request.POST['username'], password= request.POST['password'])
+                user = User.objects.create_user(request.POST['username'], password=request.POST['password'])
                 auth.login(request, user)
                 return redirect('home')
-        else: return render(request, 'accounts/signup.html', {'error': 'Passwords do not match'})
+        else: return render(request, 'accounts/signup.html', {'password_error': 'Passwords do not match'})
     else:
         #user wants to enter info
         return render(request, 'accounts/signup.html')
