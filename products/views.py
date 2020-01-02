@@ -5,7 +5,8 @@ from django.utils import timezone
 from .models import Product
 
 def home(request):
-    return render(request, 'products/home.html')
+    products = Product.objects
+    return render(request, 'products/home.html', {'products': products})
 
 @login_required
 def create(request):
@@ -27,10 +28,13 @@ def create(request):
         else: return render(request, 'products/create.html', {'error': 'All fields are required'})
     else: return render(request, 'products/create.html')
 
-# def allblogs(request):
-#     products = Product.objects
-#     return render(request, 'products/allblogs.html', {'products': products})
-
 def product_detail(request, product_id):
     detail = get_object_or_404(Product, pk=product_id)
     return render(request, 'products/product_detail.html', {'product' : detail})
+
+@login_required
+def upvote(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    product.votes_total += 1
+    product.save()
+    return redirect('/products/' + str(product.id))

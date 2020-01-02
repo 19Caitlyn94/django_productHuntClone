@@ -2,26 +2,24 @@
 
 {% block content %}
 
-<h1>Home Page</h1>
-
-<!-- <div class="row pb-5 mb-4">
-    {% with  %}
-    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-     
-        <div class="card rounded shadow-sm border-0">
-            <div class="card-body p-4"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556485076/shoes-1_gthops.jpg" alt="" class="img-fluid d-block mx-auto mb-3">
-                <h5> <a href="#" class="text-dark">Awesome product</a></h5>
-                <p class="small text-muted font-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <ul class="list-inline small">
-                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                    <li class="list-inline-item m-0"><i class="fa fa-star-o text-success"></i></li>
-                </ul>
-            </div>
+<div class="container">
+    {% for p in products.all %}
+    <div class="row mb-5 mt-5" height="500">
+        <div class="col-3" onclick="window.location='{% url 'product_detail' p.id %}'" style="cursor: pointer;">
+            <img src="{{ p.icon.url }}" width="200" heignt="200" class="rounded" />
         </div>
+        <div class="col-6" onclick="window.location='{% url 'product_detail' p.id %}'" style="cursor: pointer;">
+            <a href="/products/{{ p.id }}"><h3>{{ p.title }}</h3></a>
+            <p>{{ p.summary }}</p>
+        </div>
+        <div class="col-3"><a href="javascript:{document.getElementById('upvote{{ p.id }}').submit()}" class="btn btn-primary btn-block">Upvote {{ p.votes_total }}</a></div>
     </div>
-</div> -->
+
+    <form id="upvote{{ p.id }}" method="POST" action="{% url 'upvote' p.id %}">
+        {% csrf_token %}
+        <input type="hidden" />
+    </form>
+    {% endfor %}
+</div>
 
 {% endblock %}
