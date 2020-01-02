@@ -4,8 +4,6 @@ from django.contrib import auth
 
 def signup(request):
     if request.method == 'POST':
-        # User has info and wants to create an account
-        # Check if passwords match, if not, return page including an error
         if request.POST['password'] == request.POST['password_confirm']:
             try:
                 user = User.objects.get(username=request.POST['username'])
@@ -16,7 +14,6 @@ def signup(request):
                 return redirect('home')
         else: return render(request, 'accounts/signup.html', {'password_error': 'Passwords do not match'})
     else:
-        #user wants to enter info
         return render(request, 'accounts/signup.html')
 
 def login(request):

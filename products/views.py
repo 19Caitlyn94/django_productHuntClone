@@ -9,7 +9,6 @@ def home(request):
 @login_required
 def create(request):
     if request.method == 'POST':
-        print('!!! request.properties', request.POST.dict())
         if request.POST['title'] and request.POST['body'] and request.POST['url'] and request.FILES['icon'] and request.FILES['image']:
             product = Product()
             product.title = request.POST['title']
