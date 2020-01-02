@@ -1,0 +1,64 @@
+{% extends 'base.html' %} {% block content %}
+
+<body>
+  <div class="container">
+    <div class="row justify-content-around m-4">
+      <form method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2 class="h3 mb-4 font-weight-normal">Add a Product</h2>
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {%  endif %}
+        <input
+          type="text"
+          class="form-control mb-2"
+          placeholder="Title"
+          name="title"
+        />
+        <input
+          type="text"
+          class="form-control mb-2"
+          placeholder="Product Link"
+          name="url"
+        />
+        <input
+          type="textarea"
+          class="form-control mb-2"
+          placeholder="Description"
+          name="body"
+        />
+        <input
+          type="file"
+          class="form-control mb-2"
+          placeholder="Icon"
+          name="icon"
+        />
+        <input
+          type="file"
+          class="form-control mb-2"
+          placeholder="Image"
+          name="image"
+        />
+        <!-- <div class="input-group mb-3">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputGroupFile02" name="icon">
+              <label class="custom-file-label" for="inputGroupFile02">Upload Icon</label>
+            </div>
+          </div>
+        <div class="input-group mb-3">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputGroupFile03" name="image">
+              <label class="custom-file-label" for="inputGroupFile03">Upload Product Image</label>
+            </div>
+          </div> -->
+        <input
+          type="submit"
+          value="Add product"
+          class="btn btn-lg btn-primary btn-block"
+        />
+      </form>
+    </div>
+  </div>
+</body>
+
+{% endblock %}

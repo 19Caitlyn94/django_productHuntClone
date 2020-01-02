@@ -20,4 +20,4 @@ class Product(models.Model):
     def summary(self):
         if len(self.body) > 100: 
             return self.body[:100] + "..."
-        return self.body  
+        return self.body 
