@@ -18,7 +18,7 @@
         <input
           type="text"
           class="form-control mb-2"
-          placeholder="Product Link"
+          placeholder="Product url"
           name="url"
         />
         <input
@@ -27,23 +27,34 @@
           placeholder="Description"
           name="body"
         />
-        <input
-          type="file"
-          class="form-control mb-2"
-          placeholder="Icon"
-          name="icon"
-        />
-        <input
-          type="file"
-          class="form-control mb-2"
-          placeholder="Image"
-          name="image"
-        />
-        <input
-          type="submit"
-          value="Add product"
-          class="btn btn-lg btn-primary btn-block"
-        />
+        <div class="input-group mt-2 mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Icon</span>
+          </div>
+            <input
+            type="file"
+            class="form-control pb-2"
+            placeholder="Icon"
+            name="icon"
+          />
+          </div>
+        <div class="input-group mt-2 mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Image</span>
+          </div>
+            <input
+            type="file"
+            class="form-control"
+            placeholder="Image"
+            name="image"
+          />
+          </div>
+          <input
+            type="submit"
+            value="Add product"
+            class="btn btn-lg btn-primary btn-block"
+          />
+        </div>
       </form>
     </div>
   </div>

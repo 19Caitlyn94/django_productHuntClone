@@ -3,20 +3,20 @@
 {% block content %}
 
 <div class="container pt-5 pb-5">
-    <div class="row">
+    <div class="row pb-3 align-items-baseline">
         <div class="col-2">
             <img src="{{ product.icon.url }}" class="img-fluid" />
         </div>
-        <div class="col-10">
+        <div class="col-8">
             <a href="{{ product.url }}"><h1>{{ product.title }}</h1></a>
+        </div>
+        <div class="col-2">
+            <a href="javascript:{document.getElementById('upvote').submit()}" class="btn btn-primary btn-block"><span class="oi oi-thumb-up"></span> Upvote {{ product.votes_total }}</a>
         </div>
     </div>
     <div class="row pb-3">
         <div class="col-8">
             <img src="{{ product.image.url }}" class="img-fluid" />
-        </div>
-        <div class="col-4">
-            <a href="javascript:{document.getElementById('upvote').submit()}" class="btn btn-lrg btn-primary"><span class="io io-caret-top"></span> Upvote {{ product.votes_total }}</a>
         </div>
     </div>
     <div class="row pb-3">
